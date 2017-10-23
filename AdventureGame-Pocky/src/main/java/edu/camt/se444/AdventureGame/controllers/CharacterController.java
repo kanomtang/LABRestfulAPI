@@ -42,6 +42,12 @@ public class CharacterController {
 			return Result;
  
 		}
+		
+		@RequestMapping("/characters/addNewCharacter")
+		public boolean AddnewPlayer(){
+			
+			return toonservice.AddnewPlayer(); 
+		}
  
 }
 	
