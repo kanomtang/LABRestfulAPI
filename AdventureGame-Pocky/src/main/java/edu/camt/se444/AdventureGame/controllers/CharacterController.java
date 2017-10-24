@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.stream.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.camt.se444.AdventurGame.services.ToonService;
@@ -47,6 +49,20 @@ public class CharacterController {
 		public boolean AddnewPlayer(){
 			
 			return toonservice.AddnewPlayer(); 
+		}
+		
+		// Update existing character
+		@RequestMapping(method=RequestMethod.PUT, value="/characters/{nameparam}")
+		public boolean UpdateCharacter(@PathVariable String nameparam, @RequestBody Character c){
+			
+			return toonservice.UpdateCharacter(nameparam, c); 
+		}
+		
+		// Delete existing character
+		@RequestMapping(method=RequestMethod.DELETE, value="/characters/{nameparam}")
+		public boolean DeleteCharacter(@PathVariable String nameparam){
+			
+			return toonservice.DeleteCharacter(nameparam); 
 		}
  
 }

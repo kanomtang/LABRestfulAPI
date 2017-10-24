@@ -15,14 +15,15 @@ public class ToonService {
 	Character character;
 	private static ArrayList<Character> instance;
 
-	// singleton method
-
+	// get id
 	public String getId() {
 
 		return this.character.getName();
 
 	}
 
+	// singleton method
+	// Get all character
 	public ArrayList<Character> getEntireCharacter() {
 
 		if (instance == null) {
@@ -39,15 +40,61 @@ public class ToonService {
 
 		return instance;
 	}
-	public boolean AddnewPlayer(){
-		try{
-		Character newplayer = new Character();
-		instance.add(newplayer);
-		return true;	
-		}catch(Exception e){
-			System.out.println("This is log of error "+ e);
-			return false;	
+
+	// Add new character with default attribute
+	public boolean AddnewPlayer() {
+		try {
+			Character newplayer = new Character();
+			instance.add(newplayer);
+			return true;
+		} catch (Exception e) {
+			System.out.println("This is log of error " + e);
+			return false;
+		}
+
+	}
+
+	// Update the existing character
+	public boolean UpdateCharacter(String nameOfCharacter, Character c) {
+
+		try {
+			for (Character a : ToonService.instance) {
+				if (a.getName().equals(nameOfCharacter)) {
+					a.setName(c.getName());
+					a.setLevel(c.getLevel());
+					a.setExperience(c.getExperience());
+					a.setHealth(c.getHealth());
+					return true;
+				}
+			}
+			return false;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("This is log of error " + e);
+			return false;
+		}
+
+	}
+
+	// Delete existing character
+	public boolean DeleteCharacter(String nameOfcharacter) {
+		try {
+			for (Character a : instance) {
+				if (a.getName().equals(nameOfcharacter)) {
+					instance.remove(a);
+					return true;
+				}
+			
+		}return false;
+			} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("This is log of error " + e);
+			return false;
 		}
 		
+		
+
 	}
 }
+
